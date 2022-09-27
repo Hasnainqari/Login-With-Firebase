@@ -1,0 +1,205 @@
+body {
+    background: linear-gradient(
+        0deg,
+        rgba(34, 0, 20, 0.479),
+        rgba(34, 0, 20, 0.548)
+      ),
+      url(background.jpg) no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    justify-content: center;
+  }
+  .main{
+    display: flex;
+    justify-content: center;
+    margin-top: 8%;
+    justify-items: center;
+  }
+  /* .card-container {
+    display: grid;
+    grid-auto-rows: 2.7fr;
+    grid-template-columns: repeat(auto-fill, minmax(312px, 1fr));
+    max-width: 1248px;
+    margin: auto;
+  } */
+  
+  @media screen and (max-width: 1264px) {
+    .card-container {
+      max-width: 936px;
+    }
+  }
+  
+  @media screen and (max-width: 952px) {
+    .card-container {
+      max-width: 624px;
+    }
+  }
+  
+  .card {
+    position: relative; 
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    border-radius: 14px;
+    text-align: center;
+    background: rgb(188 188 223 / 99%);
+    display: grid;
+    grid-template-columns: 280px;
+    grid-template-rows: 2fr 0.7fr;
+    width: 280px;
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 90%);
+    transition: 0.5s ease;
+    margin: 16px;
+    min-width: 250px;
+}
+  
+  @media screen and (max-width: 640px) {
+    .card {
+      width: 100%;
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+  
+    .card-container {
+      grid-template-columns: calc(100% - 32px);
+      width: calc(100% - 32px);
+    }
+  }
+  
+  .card.light:nth-last-of-type(odd),
+  .card.dark:nth-last-of-type(even) {
+    --fore: black;
+    --back: rgba(18, 18, 49, 0.987);
+}
+  
+  .card.light:nth-last-of-type(even),
+  .card.dark:nth-last-of-type(odd) {
+    --fore: black;
+    --back: white;
+  }
+  
+  .card .card-header {
+    position: absolute;
+    border-radius: 14px;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 16px;
+  }
+  
+  .card-header i {
+    color: var(--fore);
+  }
+  
+  .card-header .options > i {
+    margin-left: 10px;
+  }
+  
+  .card .card-text {
+    color: var(--fore);
+    height: fit-content;
+    width: 250px;
+    margin: auto;
+    margin-top: 72px;
+  }
+  
+  .card-text .card-img {
+    position: relative;
+    background: url("https://media-exp1.licdn.com/dms/image/D4D35AQEQGSo9FSB74A/profile-framedphoto-shrink_200_200/0/1661791535381?e=1664881200&v=beta&t=iWCnj__UpXIXMUnTxwkzsf-0NAoHCd0LHpVVk54a3EI");
+    height: 60px;
+    width: 60px;
+    background-size: cover;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 2px 5px 15px rgb(0 0 0 / 90%);
+  }
+  
+  .card-img i {
+    position: absolute;
+    bottom: 6px;
+    right: 4px;
+    background: linear-gradient(90deg, #003366, #004080, #0059b3, #0073e6);
+    border-radius: 15px;
+  }
+  
+  .card-text h2 {
+    margin: 8px;
+    margin-bottom: 2px;
+    font-size: 18px;
+  }
+  
+  .card-text h5 {
+    margin: 0;
+    color: black;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .card-text p {
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--fore);
+    margin: 12px auto;
+    width: 180px;
+  }
+  
+  .card-text button {
+    border-radius: 20px;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px;
+    width: 180px;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    background-image: linear-gradient(90deg, #003366, #004080, #0059b3, #0073e6)
+  }
+  
+  .card-stats {
+    display: flex;
+    justify-content: space-around;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    padding: 4px 16px;
+  }
+  
+  .card-stats .stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0;
+    color: var(--fore);
+  }
+  
+  .card-stats .type {
+    font-size: 9px;
+    font-weight: 400;
+    color: black;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  .card-stats .value {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .socials i {
+    margin-left: 10px;
+    font-size: 24px;
+    background-clip: text;
+    background: -webkit-linear-gradient(0deg,#003366, #004080, #0059b3, #0073e6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+  }
+  
