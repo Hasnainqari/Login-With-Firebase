@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-
+import { doc, setDoc, getDoc, getFirestore }
+    from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDmf2D-r9b1pcPxG3G0EmRBijDlpXdR7HI",
     authDomain: "login-with-firebase-7fb17.firebaseapp.com",
@@ -13,21 +14,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
+const db = getFirestore();
 
 let register_btn = document.getElementById("submitt");
 
 register_btn.addEventListener("click", function () {
     let userName = document.getElementById("user_name");
     let professionName = document.getElementById("profession_name");
-    let dateofirth = document.getElementById("dateofirth");
+    let dateofbirth = document.getElementById("dateofbirth");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let confirmPassword = document.getElementById("confirmPassword");
-    createUserWithEmailAndPassword(auth, userName.value, professionName.value, dateofirth.value, email.value, password.value, confirmPassword.value, )
-        .then((userCredential) => {
+    createUserWithEmailAndPassword(auth, email.value, password.value, confirmPassword.value, userName.value, professionName.value, dateofbirth.value)
+        .then(async (userCredential) => {
             const user = userCredential.user;
-            // console.log("user=>", user);
-            Swal.fire("User", "Congrates Signup Successfully");
+            console.log("user=>", user);
+            Swal.fire("User", "Congrates Registered Successfully");
+            await setDoc(doc(db, "users", user.uid), {
+                userName: userName.value,
+                professionName: professionName.value,
+                dateofbirth: dateofbirth.value,
+                email: email.value,
+                password: password.value,
+                confirmPassword: confirmPassword.value,
+            });
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -35,26 +45,41 @@ register_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
 
-        });
-        userName.value = "";
-        professionName.value = "";
-        dateofirth.value = "";
-        email.value = "";
-        password.value = "";
-        confirmPassword.value = ""; 
+        }); setTimeout(() => {
+            userName.value = "";
+            professionName.value = "";
+            dateofbirth.value = "";
+            email.value = "";
+            password.value = "";
+            confirmPassword.value = "";
+        }, 1500)
+
+
+
 })
 
 let login_btn = document.getElementById("my_login");
 
 login_btn.addEventListener("click", function () {
-    let login_Name = document.getElementById("login_name");
-    let profession_Name = document.getElementById("profession_name");
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
     signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
-        .then((userCredential) => {
-
+        .then(async (userCredential) => {
             const user = userCredential.user;
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+            let profileData = document.getElementById("itemlist");
+            if (docSnap.exists()) {
+                let profileLi =
+                    `<li>Name  =  ${user.userName.value}</li>
+                <li>Profession  =  ${user.professionName.value}</li>
+                <li>DOB  =  ${user.dateofbirth.value}</li>
+                <li>E-mail  =  ${user.email.value}</li>`
+                profileData.innerHTML = profileLi.docSnap.data();
+                console.log("Document data:", docSnap.data());
+            } else {
+                console.log("No such document!");
+            }
             // console.log("user=>", user);
             Swal.fire("User", "Successfully Logged");
             setTimeout(() => {
@@ -68,6 +93,7 @@ login_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
+
     login_Email.value = "";
     login_Password.value = "";
 
@@ -90,3 +116,4 @@ signupLink.onclick = (() => {
     signupBtn.click();
     return false;
 });
+
