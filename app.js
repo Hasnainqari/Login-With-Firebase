@@ -17,10 +17,13 @@ const auth = getAuth();
 let register_btn = document.getElementById("submitt");
 
 register_btn.addEventListener("click", function () {
+    let userName = document.getElementById("user_name");
+    let professionName = document.getElementById("profession_name");
+    let dateofirth = document.getElementById("dateofirth");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let confirmPassword = document.getElementById("confirmPassword");
-    createUserWithEmailAndPassword(auth, email.value, password.value, confirmPassword,)
+    createUserWithEmailAndPassword(auth, userName.value, professionName.value, dateofirth.value, email.value, password.value, confirmPassword.value, )
         .then((userCredential) => {
             const user = userCredential.user;
             // console.log("user=>", user);
@@ -33,6 +36,9 @@ register_btn.addEventListener("click", function () {
             Swal.fire("Invalid!", errorMessage);
 
         });
+        userName.value = "";
+        professionName.value = "";
+        dateofirth.value = "";
         email.value = "";
         password.value = "";
         confirmPassword.value = ""; 
@@ -45,7 +51,7 @@ login_btn.addEventListener("click", function () {
     let profession_Name = document.getElementById("profession_name");
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
-    signInWithEmailAndPassword(auth, login_Email.value, login_Password.value, login_Name.value, profession_Name.value)
+    signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
         .then((userCredential) => {
 
             const user = userCredential.user;
@@ -62,13 +68,9 @@ login_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
-    login_Name.value = "";
     login_Email.value = "";
     login_Password.value = "";
-    profession_Name.value = "";
 
-let nameUser = document.getElementById("nameUser");
-nameUser.innerHTML = login_Name;
 })
 
 const loginText = document.querySelector(".title-text .login");
