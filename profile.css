@@ -46,6 +46,7 @@ body {
     grid-template-columns: 280px;
     grid-template-rows: 2fr 0.7fr;
     width: 280px;
+    height: 380px;
     box-shadow: 5px 5px 15px rgb(0 0 0 / 90%);
     transition: 0.5s ease;
     margin: 16px;
@@ -60,11 +61,12 @@ body {
   
     .card-container {
       grid-template-columns: calc(100% - 32px);
-      width: calc(100% - 32px);
+      width: calc(100% - 132px);
+      
     }
   }
   
-  .card.light:nth-last-of-type(odd),
+  /* .card.light:nth-last-of-type(odd),
   .card.dark:nth-last-of-type(even) {
     --fore: black;
     --back: rgba(18, 18, 49, 0.987);
@@ -197,9 +199,8 @@ body {
     background: -webkit-linear-gradient(0deg,#003366, #004080, #0059b3, #0073e6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
+  } */
   
   .card:hover {
     transform: scale(1.1);
   }
-  
