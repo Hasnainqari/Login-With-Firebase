@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getDoc, getFirestore }
+import { doc, setDoc, getFirestore }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDmf2D-r9b1pcPxG3G0EmRBijDlpXdR7HI",
@@ -53,9 +53,6 @@ register_btn.addEventListener("click", function () {
             password.value = "";
             confirmPassword.value = "";
         }, 1500)
-
-
-
 })
 
 let login_btn = document.getElementById("my_login");
@@ -63,23 +60,11 @@ let login_btn = document.getElementById("my_login");
 login_btn.addEventListener("click", function () {
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
+    // console.log(login_Email.value)
+    // console.log(login_Password.value)
     signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
         .then(async (userCredential) => {
             const user = userCredential.user;
-            const docRef = doc(db, "users", user.uid);
-            const docSnap = await getDoc(docRef);
-            let profileData = document.getElementById("itemlist");
-            if (docSnap.exists()) {
-                let profileLi =
-                    `<li>Name  =  ${user.userName.value}</li>
-                <li>Profession  =  ${user.professionName.value}</li>
-                <li>DOB  =  ${user.dateofbirth.value}</li>
-                <li>E-mail  =  ${user.email.value}</li>`
-                profileData.innerHTML = profileLi.docSnap.data();
-                console.log("Document data:", docSnap.data());
-            } else {
-                console.log("No such document!");
-            }
             // console.log("user=>", user);
             Swal.fire("User", "Successfully Logged");
             setTimeout(() => {
@@ -93,7 +78,6 @@ login_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
-
     login_Email.value = "";
     login_Password.value = "";
 
