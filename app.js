@@ -18,7 +18,7 @@ const db = getFirestore();
 
 let register_btn = document.getElementById("submitt");
 
-register_btn.addEventListener("click", function  ()  {
+register_btn.addEventListener("click", function () {
     let userName = document.getElementById("user_name");
     let professionName = document.getElementById("profession_name");
     let dateofbirth = document.getElementById("dateofbirth");
@@ -70,6 +70,7 @@ login_btn.addEventListener("click", function () {
             setTimeout(() => {
                 window.location = "./profile.html"
             }, 1500)
+            getUserFromDataBase(user.uid);
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -78,23 +79,24 @@ login_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
+    window.onload = getUserFromDataBase;
+
     login_Email.value = "";
     login_Password.value = "";
 
 })
-async function getDataFromDatabase(){
-    const docRef = doc(db, "users", collection);
+const getUserFromDataBase = async (user) => {
+    const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
+    let currentUser = document.getElementById("currentuser");
     if (docSnap.exists()) {
-        let itemList = document.getElementById("itemlist");
-        itemList.innerHTML = docSnap.data();
-        console.log("Document data:", docSnap.data());
+        currentUser.innerHTML = `${docSnap.data().userName.value} (${docSnap.data().email.value})`;
+        getAllUsers(docSnap.data().email.value, user.uid, docSnap.data().userName.value);
     } else {
-        // doc.data() will be undefined in this case
+
         console.log("No such document!");
     }
-}
-window.onload = getDataFromDatabase;
+};
 
 
 
