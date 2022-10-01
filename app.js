@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getFirestore }
+import { doc, setDoc, getFirestore, getDoc, getDocs, onSnapshot, collection, }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDmf2D-r9b1pcPxG3G0EmRBijDlpXdR7HI",
@@ -18,7 +18,7 @@ const db = getFirestore();
 
 let register_btn = document.getElementById("submitt");
 
-register_btn.addEventListener("click", function () {
+register_btn.addEventListener("click", function  ()  {
     let userName = document.getElementById("user_name");
     let professionName = document.getElementById("profession_name");
     let dateofbirth = document.getElementById("dateofbirth");
@@ -82,6 +82,24 @@ login_btn.addEventListener("click", function () {
     login_Password.value = "";
 
 })
+async function getDataFromDatabase(){
+    const docRef = doc(db, "users", collection);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        let itemList = document.getElementById("itemlist");
+        itemList.innerHTML = docSnap.data();
+        console.log("Document data:", docSnap.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}
+window.onload = getDataFromDatabase;
+
+
+
+
+
 
 const loginText = document.querySelector(".title-text .login");
 const loginForm = document.querySelector("form.login");
