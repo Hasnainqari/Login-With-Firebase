@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
+import { getAuth, createUserWithEmailAndPassword,signOut, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import { doc, setDoc, getFirestore, getDoc, getDocs, onSnapshot, collection, }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
@@ -17,7 +17,7 @@ const auth = getAuth();
 const db = getFirestore();
 
 let register_btn = document.getElementById("submitt");
-
+if(register_btn){
 register_btn.addEventListener("click", function () {
     let userName = document.getElementById("user_name");
     let professionName = document.getElementById("profession_name");
@@ -45,18 +45,19 @@ register_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
 
-        }); setTimeout(() => {
-            userName.value = "";
-            professionName.value = "";
-            dateofbirth.value = "";
-            email.value = "";
-            password.value = "";
-            confirmPassword.value = "";
-        }, 1500)
+        });
+        //  setTimeout(() => {
+        //     userName.value = "";
+        //     professionName.value = "";
+        //     dateofbirth.value = "";
+        //     email.value = "";
+        //     password.value = "";
+        //     confirmPassword.value = "";
+        // }, 1500)
 })
-
+}
 let login_btn = document.getElementById("my_login");
-
+if(login_btn){
 login_btn.addEventListener("click", function () {
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
@@ -70,7 +71,7 @@ login_btn.addEventListener("click", function () {
             setTimeout(() => {
                 window.location = "./profile.html"
             }, 1500)
-            getUserFromDataBase(user.uid);
+            // getUserFromDataBase(user.uid);
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -79,28 +80,13 @@ login_btn.addEventListener("click", function () {
             // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
-    window.onload = getUserFromDataBase;
+    // window.onload = getUserFromDataBase;
 
-    login_Email.value = "";
-    login_Password.value = "";
+    // login_Email.value = "";
+    // login_Password.value = "";
 
 })
-const getUserFromDataBase = async (user) => {
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-    let currentUser = document.getElementById("currentuser");
-    if (docSnap.exists()) {
-        currentUser.innerHTML = `${docSnap.data().userName.value} (${docSnap.data().email.value})`;
-    } else {
-
-        console.log("No such document!");
-    }
-};
-
-
-
-
-
+}
 
 const loginText = document.querySelector(".title-text .login");
 const loginForm = document.querySelector("form.login");
