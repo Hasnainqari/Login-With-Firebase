@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword,signOut, signInWithEmailAndPassword }
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getFirestore, getDoc, getDocs, onSnapshot, collection, }
+import { doc, setDoc, getFirestore}
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDmf2D-r9b1pcPxG3G0EmRBijDlpXdR7HI",
@@ -17,7 +17,7 @@ const auth = getAuth();
 const db = getFirestore();
 
 let register_btn = document.getElementById("submitt");
-if(register_btn){
+
 register_btn.addEventListener("click", function () {
     let userName = document.getElementById("user_name");
     let professionName = document.getElementById("profession_name");
@@ -42,51 +42,31 @@ register_btn.addEventListener("click", function () {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            // console.log("error=>", errorMessage);
+            console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
 
         });
-        //  setTimeout(() => {
-        //     userName.value = "";
-        //     professionName.value = "";
-        //     dateofbirth.value = "";
-        //     email.value = "";
-        //     password.value = "";
-        //     confirmPassword.value = "";
-        // }, 1500)
 })
-}
+
 let login_btn = document.getElementById("my_login");
-if(login_btn){
 login_btn.addEventListener("click", function () {
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
-    // console.log(login_Email.value)
-    // console.log(login_Password.value)
     signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
         .then(async (userCredential) => {
             const user = userCredential.user;
-            // console.log("user=>", user);
             Swal.fire("User", "Successfully Logged");
             setTimeout(() => {
                 window.location = "./profile.html"
             }, 1500)
-            // getUserFromDataBase(user.uid);
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-
-            // console.log("error=>", errorMessage);
             Swal.fire("Invalid!", errorMessage);
         });
-    // window.onload = getUserFromDataBase;
-
-    // login_Email.value = "";
-    // login_Password.value = "";
-
 })
-}
+
 
 const loginText = document.querySelector(".title-text .login");
 const loginForm = document.querySelector("form.login");

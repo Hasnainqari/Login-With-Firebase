@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="profile.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="profile.css">
 </head>
+
 <body>
-    <div class="main">
-        <div class="card-container">
-            <div class="card light">
-              <div class="card-text">
-                <h2>User Profile</h2>
-                <h3>User : <span id="currentuser"></span> </h3>
-                <h3>Position : <span id="itemlist"></span> </h3>
-              </div>
-              <button class="btn-layer" id="signOutbtn">Signout</button>
+  <div class="main">
+    <div class="card-container">
+      <div class="card light">
+        <div class="card-text">
+          <center><button class="friendsbtn" id="chatbtn">Friends</button></center>
+          <h2>User Profile</h2>
+          <h3>User Name : <span class="username" id="currentuser"></span> </h3>
+          <br>
+            <div class="mainprofileitem">
+              <ul class="profileitem">
+                <li class="name">Position : <span id="itemlist"></span></li>
+                <br>
+                <li class="name">DOB : <span id="itemlist1"></span></li>
+                <br>
+                <li class="name">E-mail ID : <span id="itemlist2"></span></li>
+              </ul>
             </div>
-            <script type="text/javascript" src="https://kit.fontawesome.com/b6f67b378e.js"></script>
-        </div>
+           </div>
+           <center><button class="btnSignout" onclick="window.location = 'chat.html'" id="chatbtn">Go To Chat</button></center>
+           <center><button class="btnSignout" onclick="window.location = 'index.html'" id="signOutbtn">Signout</button></center>
     </div>
-    <script type="module" src="dashboard.js"></script>
+  </div>
+</div>
+<script type="text/javascript" src="https://kit.fontawesome.com/b6f67b378e.js"></script>
+  <script type="module" src="profile.js"></script>
 </body>
+
 </html>
