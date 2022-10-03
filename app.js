@@ -91,7 +91,6 @@ const getUserFromDataBase = async (user) => {
     let currentUser = document.getElementById("currentuser");
     if (docSnap.exists()) {
         currentUser.innerHTML = `${docSnap.data().userName.value} (${docSnap.data().email.value})`;
-        getAllUsers(docSnap.data().email.value, user.uid, docSnap.data().userName.value);
     } else {
 
         console.log("No such document!");
