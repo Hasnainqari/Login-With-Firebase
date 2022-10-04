@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getFirestore}
+import { doc, setDoc, getFirestore }
     from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDmf2D-r9b1pcPxG3G0EmRBijDlpXdR7HI",
@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const db = getFirestore();
-
+;
 let register_btn = document.getElementById("submitt");
 
 register_btn.addEventListener("click", function () {
@@ -55,15 +55,19 @@ login_btn.addEventListener("click", function () {
     signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
         .then(async (userCredential) => {
             const user = userCredential.user;
-            Swal.fire("User", "Successfully Logged");
-            setTimeout(() => {
-                window.location = "./profile.html"
-            }, 1500)
+            Swal.fire({
+                icon: 'success',
+                text: 'Login Succesfully',
+              })
+              setTimeout(() => {
+                    window.location = "./profile.html"
+                }, 1500)
+
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            Swal.fire("Invalid!", errorMessage);
+            Swal.fire("Error!","Invalid!", errorMessage);
         });
 })
 

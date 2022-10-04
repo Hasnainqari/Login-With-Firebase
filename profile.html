@@ -14,26 +14,30 @@
     <div class="card-container">
       <div class="card light">
         <div class="card-text">
-          <center><button class="friendsbtn" id="chatbtn">Friends</button></center>
+          <center><button class="friendsbtn" id="getfriendsbtn">Friends</button>
+          </center>
           <h2>User Profile</h2>
           <h3>User Name : <span class="username" id="currentuser"></span> </h3>
           <br>
-            <div class="mainprofileitem">
-              <ul class="profileitem">
-                <li class="name">Position : <span id="itemlist"></span></li>
-                <br>
-                <li class="name">DOB : <span id="itemlist1"></span></li>
-                <br>
-                <li class="name">E-mail ID : <span id="itemlist2"></span></li>
-              </ul>
-            </div>
-           </div>
-           <center><button class="btnSignout" onclick="window.location = 'chat.html'" id="chatbtn">Go To Chat</button></center>
-           <center><button class="btnSignout" onclick="window.location = 'index.html'" id="signOutbtn">Signout</button></center>
+          <div class="mainprofileitem">
+            <ul class="profileitem">
+              <li class="name">E-mail ID <br><span id="itemlist2"></span></li>
+              <br>
+              <li class="name">Position :<span id="itemlist"></span></li>
+              <br>
+              <li class="name">DOB :<span id="itemlist1"></span></li>
+              <br>
+              
+            </ul>
+          </div>
+        </div>
+        <center><button class="btnSignout" onclick="window.location = 'index.html'" id="signOutbtn">Signout</button>
+        </center>
+      </div>
     </div>
   </div>
-</div>
-<script type="text/javascript" src="https://kit.fontawesome.com/b6f67b378e.js"></script>
+  <script type="text/javascript" src="https://kit.fontawesome.com/b6f67b378e.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script type="module" src="profile.js"></script>
 </body>
 

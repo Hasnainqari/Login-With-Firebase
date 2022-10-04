@@ -2,6 +2,7 @@
   font-family: Josefin;
   src: url(./Josefin_Sans/static/JosefinSans-Light.ttf);
 }
+
 body {
   background: linear-gradient(0deg,
       rgba(34, 0, 20, 0.479),
@@ -78,7 +79,8 @@ body {
   font-weight: 500;
   cursor: pointer;
 }
-.friendsbtn{
+
+.friendsbtn {
   margin-top: 15px;
   height: 50%;
   width: 50%;
@@ -93,7 +95,8 @@ body {
   font-weight: 500;
   cursor: pointer;
 }
-.profileitem{
+
+.profileitem {
   font-family: Josefin;
   font-weight: 900;
   color: #004080;
@@ -105,26 +108,31 @@ body {
   width: 80%;
   height: 100%;
 }
-.username{
+
+.username {
   color: #000;
 }
-.profileitem{
- list-style-type: none;
-}
-.name{
-  color: #000 ;
+
+.profileitem {
+  list-style-type: none;
 }
 
-.profileitem span{
+.name {
+  color: #000;
+}
+
+.profileitem span {
   color: #004080;
 }
-ul{
+
+ul {
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
+
 .card:hover {
   transform: scale(1.1);
 }
