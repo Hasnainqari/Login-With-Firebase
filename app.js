@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const db = getFirestore();
-;
+
 let register_btn = document.getElementById("submitt");
 
 register_btn.addEventListener("click", function () {
@@ -52,6 +52,7 @@ let login_btn = document.getElementById("my_login");
 login_btn.addEventListener("click", function () {
     let login_Email = document.getElementById("login_email");
     let login_Password = document.getElementById("login_password");
+
     signInWithEmailAndPassword(auth, login_Email.value, login_Password.value)
         .then(async (userCredential) => {
             const user = userCredential.user;
@@ -59,6 +60,7 @@ login_btn.addEventListener("click", function () {
                 icon: 'success',
                 text: 'Login Succesfully',
             })
+
             setTimeout(() => {
                 window.location = "./profile.html"
             }, 1500)

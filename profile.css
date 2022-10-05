@@ -4,6 +4,8 @@
 }
 
 body {
+  height: 100vh;
+  text-align: center;
   background: linear-gradient(0deg,
       rgba(34, 0, 20, 0.479),
       rgba(34, 0, 20, 0.548)),
@@ -136,4 +138,3 @@ ul {
 .card:hover {
   transform: scale(1.1);
 }
-

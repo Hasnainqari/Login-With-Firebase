@@ -56,6 +56,6 @@ getfriendsbtn.addEventListener("click", async function () {
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     console.log(doc.data().userName);
- });
+  });
 }
 )
