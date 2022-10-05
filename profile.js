@@ -15,9 +15,9 @@ const auth = getAuth();
 const db = getFirestore();
 
 let currentUser = document.getElementById("currentuser");
-let itemlist = document.getElementById("itemlist");
-let itemlist1 = document.getElementById("itemlist1");
-let itemlist2 = document.getElementById("itemlist2");
+let position = document.getElementById("position");
+let dob = document.getElementById("DOB");
+let email = document.getElementById("email");
 
 window.onload = function () {
   onAuthStateChanged(auth, async (user) => {
@@ -28,17 +28,16 @@ window.onload = function () {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        // console.log(docSnap.data().userName)
         currentUser.innerHTML += `
                 ${docSnap.data().userName}
                 `;
-        itemlist2.innerHTML = `
+        email.innerHTML = `
                 ${docSnap.data().email}
                 `;
-        itemlist.innerHTML = `
+        position.innerHTML = `
                 ${docSnap.data().professionName}
                 `;
-        itemlist1.innerHTML = `
+        dob.innerHTML = `
                 ${docSnap.data().dateofbirth}
                 `;
 
@@ -50,23 +49,13 @@ window.onload = function () {
 }
 
 
+let getfriendsbtn = document.getElementById("getfriendsbtn");
 
-// let getfriendsbtn = document.getElementById("getfriendsbtn");
-
-// getfriendsbtn.addEventListener("click", function () {
-
-const getAllUsers = async (email) => {
-  const q = query(collection(db, "users"), where("users", "!=", email));
+getfriendsbtn.addEventListener("click", async function () {
+  const q = query(collection(db, "users"), where("email", "!=", "email"));
   const querySnapshot = await getDocs(q);
-  // let getfriendsbtn = document.getElementById("allusers");
   querySnapshot.forEach((doc) => {
-    getfriendsbtn.innerHTML +=
-      `<li>${doc.data().userName} <button onclick='startChat("${doc.email
-      }","${doc.data().userName
-      }","</li>`;
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.email, " => ", doc.data());
-
-  });
+    console.log(doc.data().userName);
+ });
 }
-// })
+)
