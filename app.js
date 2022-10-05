@@ -58,16 +58,16 @@ login_btn.addEventListener("click", function () {
             Swal.fire({
                 icon: 'success',
                 text: 'Login Succesfully',
-              })
-              setTimeout(() => {
-                    window.location = "./profile.html"
-                }, 1500)
+            })
+            setTimeout(() => {
+                window.location = "./profile.html"
+            }, 1500)
 
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            Swal.fire("Error!","Invalid!", errorMessage);
+            Swal.fire("Error!", "Invalid!", errorMessage);
         });
 })
 

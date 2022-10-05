@@ -66,7 +66,7 @@ const getAllUsers = async (email) => {
       }","</li>`;
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.email, " => ", doc.data());
-    
+
   });
 }
 // })
