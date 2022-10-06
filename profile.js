@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "login-with-firebase-7fb17",
   storageBucket: "login-with-firebase-7fb17.appspot.com",
   messagingSenderId: "451708925508",
-  appId: "1:451708925508:web:d06ec5b9907cbd72a06e11"
+  appId: "1:451708925508:web:d06ec5b9907cbd72a06e11",
 };
 const app = initializeApp(firebaseConfig);
 
@@ -22,7 +22,7 @@ let email = document.getElementById("email");
 window.onload = function () {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      window.location.replace('index.html')
+      window.location.replace('index.html');
     } else {
 
       const docRef = doc(db, "users", user.uid);
@@ -47,7 +47,6 @@ window.onload = function () {
     }
   });
 }
-
 
 let getfriendsbtn = document.getElementById("getfriendsbtn");
 
